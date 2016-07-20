@@ -52,5 +52,11 @@
 		- 加载 angular.js，找到 ng-app 指令，确定应用的边界。
 	- 编译阶段
 		- 遍历 DOM，找到所有指令。缓存。
-		- 
+		- 根据指令代码的 template、replace、transclue 转换 DOM 结构。
+		- 如果找到 complie 函数，调用。
+	- 链接阶段
+		- 对每条指令运行 link 函数。不要在 controller 或其他地方操作 DOM。在指令中的 link 中操作 DOM。
+		- link 函数一般用来操作 DOM、绑定事件监听器。
+		
+	![](https://github.com/GeekStudioHIT/Web-Front-End/blob/master/AngularJS/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-07-20%20%E4%B8%8B%E5%8D%886.20.57.png)
 - AngularJS 内置指令
