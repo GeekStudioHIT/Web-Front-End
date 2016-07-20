@@ -1,0 +1,17 @@
+<!DOCTYPE html>
+<html ng-app="expanderModule">
+<head>
+    <meta charset="UTF-8">
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script src="directiveTest5.js"></script>
+    <link rel="stylesheet" type="text/css" href="directiveTest5.css"/>
+    <title>directiveTest5</title>
+</head>
+<body ng-controller='SomeController' >
+<accordion>
+    <expander class='expander' ng-repeat='expander in expanders' expander-title='expander.title'>
+        {{expander.text}}
+    </expander>
+</accordion>
+</body>
+</html>

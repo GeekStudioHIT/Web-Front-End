@@ -31,3 +31,26 @@
 ## 参考
 - [参考一](http://www.apjs.net/#dir31)
 - [参考二](http://www.runoob.com/angularjs/angularjs-intro.html)
+- [慕课网 AngularJS 视频](http://www.imooc.com/learn/156)
+
+## AngularJS 四大特性
+- MVC
+- 模块化和依赖注入
+- 双向数据绑定
+- 指令
+
+### 指令
+- restrict
+	- A 属性 默认
+	- E 元素
+	- M 注释
+		- <!-- directive:hello --> 注意中间的空格。
+	- C class
+- templateCache 模板缓存
+- 指令执行机制
+	- 加载阶段
+		- 加载 angular.js，找到 ng-app 指令，确定应用的边界。
+	- 编译阶段
+		- 遍历 DOM，找到所有指令。缓存。
+		- 
+- AngularJS 内置指令
