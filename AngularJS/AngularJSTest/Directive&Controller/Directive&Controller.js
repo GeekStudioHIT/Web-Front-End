@@ -14,10 +14,10 @@ myModule.directive("loader", function() {
         restrict:"AE",
         link:function(scope,element,attrs){
             element.bind('mouseenter', function(event) {
-                scope.loadData();
-                // scope.$apply("loadData()");
-                // 注意这里的坑，howToLoad会被转换成小写的howtoload
-//                scope.$apply(attrs.howtoload);
+//                scope.loadData();
+//                scope.$apply("loadData()");
+//                注意这里的坑，howToLoad会被转换成小写的howtoload
+                scope.$apply(attrs.howtoload);
             });
         }
     }
