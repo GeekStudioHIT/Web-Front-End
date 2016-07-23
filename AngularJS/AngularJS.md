@@ -60,3 +60,4 @@
 		
 	![](https://github.com/GeekStudioHIT/Web-Front-End/blob/master/AngularJS/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-07-20%20%E4%B8%8B%E5%8D%886.20.57.png)
 - AngularJS 内置指令
+- 自定义指令，元素，不能用大写。
