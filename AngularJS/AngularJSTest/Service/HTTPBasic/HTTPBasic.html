@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html ng-app="MyModule">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="http://apps.bdimg.com/libs/angular.js/1.4.6/angular.min.js"></script>
+    <script src="HTTPBasic.js"></script>
+</head>
+<body>
+    <div ng-controller="LoadDataCtrl">
+        <ul>
+            <li ng-repeat="user in users">
+                {{ user.name }}
+            </li>
+        </ul>
+    </div>
+</body>
+</html>
