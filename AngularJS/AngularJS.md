@@ -61,3 +61,15 @@
 	![](https://github.com/GeekStudioHIT/Web-Front-End/blob/master/AngularJS/%E5%B1%8F%E5%B9%95%E5%BF%AB%E7%85%A7%202016-07-20%20%E4%B8%8B%E5%8D%886.20.57.png)
 - AngularJS 内置指令
 - 自定义指令，元素，不能用大写。
+
+
+- 原型、闭包、作用域、DOM 和 BOM 操作。犀牛书。《JavaScritp 高级程序设计》。《JavaScript 语言精粹》。《JavaScript 设计模式》。
+- 定义模块。var myModule = angular.module("MyModule", []);
+
+## Angular 模块
+- [参考一](https://github.com/xufei/blog/issues/17)
+- 一堆功能单元的集合。
+- 只是将依赖的 module 做一个简单的复制。
+- 不能动态加载。
+- 2.0 已解决。
+- .run 块在注入器创建之后被执行，是所有 AngularJS 应用中第一个被执行的方法，与 main 方法最接近的概念。通常用来注册全局的事件监听器。比如路由发生变化时，都执行一个函数来验证用户的权限，放置这个功能唯一合理的地方就是 run 方法。

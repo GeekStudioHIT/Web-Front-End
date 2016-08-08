@@ -1059,9 +1059,13 @@ appModule.directive("shelfcanvas", function() {
         template: '<canvas></canvas>',
         replace: true,
         link:function(scope,element,attrs){
+            // 绑定事件
+            element.bind('click', function(event) {
+                console.log("aaa");
+            });
+
             // 根据 bucketLayer 对 bucketsData 进行排序，sortedBucketsData 最后一个元素为货架信息。
             var sortedBucketsData = window._.sortBy(bucketsData, 'bucketLayer');
-            console.log(sortedBucketsData);
             var lengthOfSortedBucketsData = sortedBucketsData.length;
 
             var currentLayer = sortedBucketsData[0].bucketLayer;
