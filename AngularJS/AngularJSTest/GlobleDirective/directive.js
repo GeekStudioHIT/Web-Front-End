@@ -1,5 +1,5 @@
 angular.module('directiveModule', [])
-.directive('hello', function() {
+.directive('Hello', function() {
     return {
         restrict: 'E',
         template: '<div>Hi there</div>',
