@@ -1,0 +1,159 @@
+<!DOCTYPE html>
+<html lang="zh-cn">
+<head>
+    <meta charset="UTF-8">
+    <title>PagingDemo</title>
+    <link rel="stylesheet" href="lib/css/table.css">
+    <script src="lib/js/jquery-1.11.1.min.js"></script>
+    <script src="lib/js/jquery.paging.min.js"></script>
+    <style type="text/css">
+        .pagination {
+            display: inline-block;
+            padding-left: 0;
+            margin: 20px 0;
+            border-radius: 4px;
+            color: #4297D7;
+        }
+        .pagination a {text-decoration: underline !important;}
+        .pagination a:hover {text-decoration: none !important;}
+        .pagination>li {
+            display: inline;
+            cursor: pointer;
+        }
+        .pagination>li>a, .pagination>li>span {
+            position: relative;
+            float: left;
+            padding: 5px 12px;
+            margin-left: -1px;
+            line-height: 1.53846154;
+            text-decoration: none;
+            background-color: #fff;
+            -webkit-transition: all .3s cubic-bezier(.175, .885, .32, 1);
+            -o-transition: all .3s cubic-bezier(.175, .885, .32, 1);
+            transition: all .3s cubic-bezier(.175, .885, .32, 1)
+        }
+        .pagination>li:first-child>a, .pagination>li:first-child>span {
+            margin-left: 0;
+        }
+        .pagination>li>a:hover, .pagination>li>span:hover, .pagination>li>a:focus, .pagination>li>span:focus {
+            color: #0000CC !important;
+            text-decoration: underline !important;
+        }
+        .pagination>.active>a, .pagination>.active>span, .pagination>.active>a:hover, .pagination>.active>span:hover, .pagination>.active>a:focus, .pagination>.active>span:focus {
+            z-index: 2;
+            color: #000;
+            cursor: default;
+            text-decoration: none !important;
+        }
+
+        .pagination>.disabled>span, .pagination>.disabled>span:hover, .pagination>.disabled>span:focus, .pagination>.disabled>a,.pagination>.disabled>a:hover,.pagination>.disabled>a:focus {
+            color: #ddd;
+            cursor: not-allowed;
+            background-color: #fff;
+        }
+    </style>
+</head>
+<body>
+    <div id="searchResult"></div>
+    <div class="pagination"></div>
+</body>
+<script>
+    var _myPage = {
+        pageInit: false,
+        cacheOptions: {},
+        reload: function(){
+            _myPage.search(_myPage.cacheOptions);
+        },
+        pagination: function(totalCount, options) {
+            $(".pagination").paging(totalCount, {
+                perpage:10,
+                format: '[< ncnnn >]',
+                onSelect: function (currentPage) {
+                    options.data.currentPage = currentPage;
+                    _myPage.cacheOptions = options;
+                    if (_myPage.pageInit) {
+                        _myPage.search(options);
+                    }
+                },
+                onFormat: function (type) {
+                    switch (type) {
+                        case 'block': // n and c
+                            if (this.value == this.page) {
+                                return '<li class="active"><a>' + this.value + '</a></li>';
+                            } else {
+                                return '<li><a>' + this.value + '</a></li>';
+                            }
+                        case 'next': // >
+                            if (this.value == this.page) {
+                                return '';
+                            } else {
+                                return '<li class="next"><a>下一页 »</a></li>';
+                            }
+                        case 'prev': // <
+                            if (this.value == this.page) {
+                                return '';
+                            } else {
+                                return '<li class="previous"><a>« 上一页</a></li>';
+                            }
+                        case 'first': // [
+                            if (this.value == this.page) {
+                                return '';
+                            } else {
+                                return '<li><a>首页</a></li>';
+                            }
+                        case 'last': // ]
+                            if (this.value == this.page) {
+                                return '';
+                            } else {
+                                return '<li><a>末页</a></li>';
+                            }
+                    }
+                }
+            });
+        },
+        search:function(options) {
+            var data =
+                    " <table class=\"table table-hover table-bordered table-striped\">\n" +
+                    " <thead>\n" +
+                    " 	<tr><th>序号</th><th>时间</th><th>登录IP</th><th>登录省份</th><th>登录城市</th><th>网络服务商</th>\n" +
+                    " </tr></thead>\n" +
+                    " <tbody>\n";
+
+            for (var i = 1;i <= 10;i++) {
+                data = data+
+                        " <tr>\n" +
+                        " 	<td>"+(10*(options.data.currentPage-1)+i)+"</td>\n" +
+                        " 	<td>2016-01-21 23:02:25</td>\n" +
+                        " 	<td>171.113.195.153</td>\n" +
+                        " 	<td>湖北省</td>\n" +
+                        " 	<td>武汉市</td>\n" +
+                        " 	<td>电信</td>\n" +
+                        " </tr>\n";
+            }
+
+            data = data+
+                    " </tbody>\n" +
+                    " </table>\n";
+            var result = {};
+            result.data = data;
+            result.count = 200;
+            options.callback(result);
+            if (_myPage.pageInit == false) {
+                _myPage.pagination(result.count,options);
+                _myPage.pageInit = true;
+            }
+        }
+    };
+    $(function () {
+        var param = {currentPage: 1};
+        _myPage.pageInit = false;
+        _myPage.search({
+            url:'/page.do',
+            data:param,
+            callback:function(result) {
+                $('#searchResult').html(result.data);
+            }
+        });
+    });
+</script>
+</html>
